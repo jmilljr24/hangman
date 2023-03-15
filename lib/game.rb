@@ -1,5 +1,5 @@
 class Game
-  attr_reader :key_clues
+  attr_writer :current_guess
 
   def initialize
     @key = key_word
@@ -17,7 +17,25 @@ class Game
   end
 
   def display
-    puts "Make your  next guess #{@key_clues.join(' ')}"
-    puts @key_clues
+    puts <<-HEREDOC
+
+    Make your guess! You have #{@guesses_remaining} guesses remaining.
+
+          #{@key_clues.join(' ')}
+
+          #{@letters_guessed.join(' ')}
+    HEREDOC
+  end
+
+  def input
+    user_input = gets.chomp.downcase
+    if user_input == 'save'
+      user_input
+    elsif user_input.length == 1 and user_input.match?(/[a-z]/)
+      user_input
+      @letters_guessed << user_input
+    else
+      puts 'Please enter one letter A-Z'
+    end
   end
 end
