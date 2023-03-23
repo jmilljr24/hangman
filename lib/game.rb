@@ -51,11 +51,10 @@ class Game
 
   def update_clue
     a = @key.split('')
-    u = @user_input
     p a
     a.each_with_index do |letter, i|
       #     binding.pry
-      @key_clues[i] = u if letter == u
+      @key_clues[i] = @user_input if letter == @user_input
       p @key_clues
     end
   end
