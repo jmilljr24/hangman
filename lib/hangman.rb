@@ -1,8 +1,10 @@
 require_relative 'game'
 
 def input
-  letter = gets.chomp
-  puts letter
+  selection = gets.chomp.downcase
+#  if selection == 'save'
+#  end
+  game = Game.new if selection == '1'
 end
 
 game = Game.new

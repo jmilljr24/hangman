@@ -4,7 +4,7 @@ class Game
   attr_writer :current_guess
 
   def initialize
-    @key = key_word
+    p @key = key_word
     @guesses_remaining = 10
     @key_clues = []
     @key.length.times { @key_clues << '_' }
@@ -36,12 +36,10 @@ class Game
 
   def input
     @user_input = gets.chomp.downcase
-    if @user_input == 'save'
-      @user_input
-    elsif @letters_guessed.include?(@user_input)
-      puts 'That letter has already been used. Silly mistake! That will cost you a guess...'
+    if @letters_guessed.include?(@user_input)
+      puts 'That letter has already been used. Silly mistake! Try again...'
     elsif @user_input.length == 1 && @user_input.match?(/[a-z]/)
-      @user_input
+      # @user_input
       @letters_guessed << @user_input
     else
       puts 'Please enter one letter A-Z'
@@ -49,25 +47,44 @@ class Game
     end
   end
 
+  def input_check
+    return if @key.include?(@user_input)
+
+    @guesses_remaining -= 1
+  end
+
   def update_clue
     a = @key.split('')
-    p a
     a.each_with_index do |letter, i|
       #     binding.pry
       @key_clues[i] = @user_input if letter == @user_input
-      p @key_clues
     end
   end
 
   def play
-    until @guesses_remaining.zero?
+    until over?
       display
       input
       update_clue
-      @guesses_remaining -= 1
+      input_check
     end
     puts 'Game Over'
   end
+end
+
+def over?
+  if @key_clues.join == @key
+    puts "#{@key_clues.join(' ')}"
+    puts 'You win!!'
+    true
+  elsif  @guesses_remaining.zero?
+    puts "You lose! The word was #{@key}."
+    true
+  end
+end
+
+def save?
+  @user_input == 'save'
 end
 
 game = Game.new
