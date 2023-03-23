@@ -1,9 +1,10 @@
 require 'pry-byebug'
 
 class Game
-  attr_writer :current_guess
+  attr_accessor :game_name
 
-  def initialize
+  def initialize(game_name = 'default')
+    @game_name = game_name
     p @key = key_word
     @guesses_remaining = 10
     @key_clues = []
@@ -86,6 +87,3 @@ end
 def save?
   @user_input == 'save'
 end
-
-game = Game.new
-game.play
