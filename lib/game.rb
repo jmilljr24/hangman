@@ -1,4 +1,5 @@
 require 'pry-byebug'
+require 'yaml'
 
 class Game
   attr_accessor :game_name
@@ -37,7 +38,9 @@ class Game
 
   def input
     @user_input = gets.chomp.downcase
-    if @letters_guessed.include?(@user_input)
+    if @user_input == 'save'
+      save
+    elsif @letters_guessed.include?(@user_input)
       puts 'That letter has already been used. Silly mistake! Try again...'
     elsif @user_input.length == 1 && @user_input.match?(/[a-z]/)
       # @user_input
@@ -81,9 +84,12 @@ def over?
   elsif  @guesses_remaining.zero?
     puts "You lose! The word was #{@key}."
     true
+  elsif @user_input == 'save'
+    true
   end
 end
 
-def save?
-  @user_input == 'save'
+def save
+  p serialized_object = YAML.dump(self)
+  puts "Your game is saved as #{game_name}"
 end

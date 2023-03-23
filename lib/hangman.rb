@@ -1,6 +1,8 @@
 require_relative 'game'
 
 end_program = ''
+name = ''
+game = nil
 
 puts <<~'HEREDOC'
 
@@ -15,6 +17,7 @@ puts <<~'HEREDOC'
 HEREDOC
 
 until end_program == 'quit'
+  #  binding.pry
   selection = gets.chomp.downcase
   end_program = 'quit' if selection == 'quit'
   if selection == '1'
