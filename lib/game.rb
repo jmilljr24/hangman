@@ -38,6 +38,8 @@ class Game
 
   def input
     @user_input = gets.chomp.downcase
+    return if @user_input == 'quit'
+
     if @user_input == 'save'
       save
     elsif @letters_guessed.include?(@user_input)
