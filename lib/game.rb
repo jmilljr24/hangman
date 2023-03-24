@@ -72,7 +72,6 @@ class Game
       update_clue
       input_check
     end
-    puts 'Game Over'
   end
 end
 
@@ -84,16 +83,18 @@ def over?
   elsif  @guesses_remaining.zero?
     puts "You lose! The word was #{@key}."
     true
-  elsif @user_input == 'save'
+  elsif @user_input == 'save' || @user_input == 'quit'
     true
   end
 end
 
 def save
   #  binding.pry
+  @user_input = ''
   p serialized_object = YAML.dump(self)
   puts "Your game is saved as #{game_name}"
   File.open("#{game_name}.yaml", 'w') do |file|
     file.write serialized_object
   end
+  @user_input = 'save'
 end

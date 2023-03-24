@@ -1,8 +1,11 @@
 require_relative 'game'
+require 'pry-byebug'
+require 'yaml'
 
 end_program = ''
-name = ''
-game = nil
+@load_name = ''
+# name = ''
+# game = nil
 
 puts <<~'HEREDOC'
 
@@ -15,9 +18,12 @@ puts <<~'HEREDOC'
   Type 'quit' to end the program.
 
 HEREDOC
+# def load_game
+#  YAML.safe_load File.read("#{@load_name}.yaml")
+# end
 
 until end_program == 'quit'
-  #  binding.pry
+  # git  binding.pry
   selection = gets.chomp.downcase
   end_program = 'quit' if selection == 'quit'
   if selection == '1'
@@ -27,6 +33,11 @@ until end_program == 'quit'
     game.play
   elsif selection == '2'
     puts 'saved game test'
+    #  binding.pry
+    @load_name = gets.chomp
+    saved_game = File.read("#{@load_name}.yaml")
+    p game = YAML.unsafe_load(saved_game)
+    game.play
   end
   puts <<~'HEREDOC'
 
