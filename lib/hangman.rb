@@ -39,7 +39,7 @@ until end_program == 'quit'
     end
     puts 'Enter the name of the saved game.'
     #  binding.pry
-    @load_name = gets.chomp
+    @load_name = gets.chomp until saved_list.include?("#{@load_name}.yaml")
     saved_game = File.read("#{@load_name}.yaml")
     game = YAML.unsafe_load(saved_game)
     game.play

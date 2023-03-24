@@ -1,4 +1,3 @@
-require 'pry-byebug'
 require 'yaml'
 
 class Game
@@ -6,7 +5,7 @@ class Game
 
   def initialize(game_name = 'default')
     @game_name = game_name
-    p @key = key_word
+    @key = key_word
     @guesses_remaining = 10
     @key_clues = []
     @key.length.times { @key_clues << '_' }
@@ -45,7 +44,6 @@ class Game
     elsif @letters_guessed.include?(@user_input)
       puts 'That letter has already been used. Silly mistake! Try again...'
     elsif @user_input.length == 1 && @user_input.match?(/[a-z]/)
-      # @user_input
       @letters_guessed << @user_input
     else
       puts 'Please enter one letter A-Z'
@@ -91,9 +89,8 @@ def over?
 end
 
 def save
-  #  binding.pry
   @user_input = ''
-  p serialized_object = YAML.dump(self)
+  serialized_object = YAML.dump(self)
   puts "Your game is saved as #{game_name}"
   File.open("#{game_name}.yaml", 'w') do |file|
     file.write serialized_object
