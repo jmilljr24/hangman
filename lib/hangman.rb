@@ -35,6 +35,7 @@ until end_program == 'quit'
     saved_game = File.read("#{@load_name}.yaml")
     game = YAML.unsafe_load(saved_game)
     game.play
+    @load_name = ''
   end
   puts <<~'HEREDOC'
 
