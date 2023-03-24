@@ -1,0 +1,18 @@
+--- !ruby/object:Game
+game_name: arlo
+key: lonely
+guesses_remaining: 8
+key_clues:
+- l
+- _
+- "n"
+- e
+- l
+- _
+letters_guessed:
+- b
+- s
+- l
+- e
+- "n"
+user_input: ''

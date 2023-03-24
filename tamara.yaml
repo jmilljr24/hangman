@@ -1,0 +1,19 @@
+--- !ruby/object:Game
+game_name: tamara
+key: version
+guesses_remaining: 8
+key_clues:
+- v
+- e
+- _
+- s
+- _
+- _
+- _
+letters_guessed:
+- b
+- s
+- e
+- v
+- x
+user_input: ''

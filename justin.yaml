@@ -1,0 +1,19 @@
+--- !ruby/object:Game
+game_name: justin
+key: sheriff
+guesses_remaining: 7
+key_clues:
+- s
+- _
+- e
+- _
+- _
+- _
+- _
+letters_guessed:
+- s
+- e
+- b
+- c
+- d
+user_input: ''

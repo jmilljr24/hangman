@@ -32,11 +32,16 @@ until end_program == 'quit'
     game = Game.new(name)
     game.play
   elsif selection == '2'
-    puts 'saved game test'
+    saved_list = Dir['*.yaml']
+    puts 'Saved Games:'
+    saved_list.each do |file|
+      puts File.basename(file, '.yaml')
+    end
+    puts 'Enter the name of the saved game.'
     #  binding.pry
     @load_name = gets.chomp
     saved_game = File.read("#{@load_name}.yaml")
-    p game = YAML.unsafe_load(saved_game)
+    game = YAML.unsafe_load(saved_game)
     game.play
   end
   puts <<~'HEREDOC'
