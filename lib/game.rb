@@ -90,6 +90,10 @@ def over?
 end
 
 def save
+  #  binding.pry
   p serialized_object = YAML.dump(self)
   puts "Your game is saved as #{game_name}"
+  File.open("#{game_name}.yaml", 'w') do |file|
+    file.write serialized_object
+  end
 end

@@ -1,0 +1,19 @@
+--- !ruby/object:Game
+game_name: justin
+key: tenant
+guesses_remaining: 7
+key_clues:
+- t
+- e
+- "n"
+- _
+- "n"
+- t
+letters_guessed:
+- t
+- e
+- b
+- c
+- d
+- "n"
+user_input: save
